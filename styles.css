@@ -23,6 +23,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 .controls .controls__btns {
   margin-bottom: 30px;

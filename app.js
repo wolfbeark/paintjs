@@ -7,6 +7,7 @@ const mode = document.getElementById("jsMode");
 const save = document.getElementById("jsSave");
 const INITIAL_COLOR = "#2c2c2c";
 const CANVAS_SIZE = 500;
+let isMoblie = false;
 
 canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
@@ -19,6 +20,14 @@ ctx.lineWidth = 2.5;
 
 let painting = false;
 let filling = false;
+
+function isMobile(){
+
+    isMobile = /(iphone|ipod|ipad|android|blackberry|windows ce|palm|symbian)/i.test(navigator.userAgent);
+    console.log(isMobile);
+    };
+    if (isMobile()) alert('mobile');
+    
 
 function stopPainting(event)
 {
@@ -87,6 +96,8 @@ function saveClick()
     link.download = "PaintJSTest";
     link.click();
 }
+
+
 if(canvas){
     canvas.addEventListener("mousemove", onMouseMove);
     canvas.addEventListener("mousedown", startPainting);
