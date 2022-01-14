@@ -30,16 +30,13 @@ function isMobile(){
 function stopPainting(event)
 {
     painting = false;
-    BodyScrollAble();
 }
 function startPainting(event)
 {
     painting = true;
-    BodyScrollDisAble();
 }
 function onMouseMove(event)
 {
-    BodyScrollDisAble();
     const x = event.offsetX;
     const y = event.offsetY;
     if(!painting)
