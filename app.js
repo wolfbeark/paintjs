@@ -7,6 +7,7 @@ const mode = document.getElementById("jsMode");
 const save = document.getElementById("jsSave");
 const INITIAL_COLOR = "#2c2c2c";
 const CANVAS_SIZE = 500;
+let isMoblie = false;
 
 canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
@@ -20,16 +21,25 @@ ctx.lineWidth = 2.5;
 let painting = false;
 let filling = false;
 
+function isMobile(){
+
+    isMobile = /(iphone|ipod|ipad|android|blackberry|windows ce|palm|symbian)/i.test(navigator.userAgent);
+    console.log(isMobile);
+    };
+
 function stopPainting(event)
 {
     painting = false;
+    BodyScrollAble();
 }
 function startPainting(event)
 {
     painting = true;
+    BodyScrollDisAble();
 }
 function onMouseMove(event)
 {
+    BodyScrollDisAble();
     const x = event.offsetX;
     const y = event.offsetY;
     if(!painting)
@@ -64,7 +74,6 @@ function modeClick()
     else if(filling === false)
     {
         mode.innerText = "Paint";
-        
         filling = true;
     }
 }
@@ -87,6 +96,8 @@ function saveClick()
     link.download = "PaintJSTest";
     link.click();
 }
+
+
 if(canvas){
     canvas.addEventListener("mousemove", onMouseMove);
     canvas.addEventListener("mousedown", startPainting);
@@ -95,6 +106,7 @@ if(canvas){
     canvas.addEventListener("click", canvasClick);
     canvas.addEventListener("contextmenu", handleCM);
 }
+
 if(colors)
 {
     Array.from(colors).forEach(color => color.addEventListener("click", changeColor));
@@ -112,3 +124,9 @@ if(save)
 {
     save.addEventListener("click", saveClick);
 }
+function BodyScrollDisAble(){
+    document.body.style.overflow = "hidden";
+};		
+function BodyScrollAble(){
+    document.body.style.overflow = "auto"; 
+};
